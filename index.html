@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Valentine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      background: url('valentinee.jpg') center/cover no-repeat;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .box {
+      background: rgba(255,255,255,0.92);
+      padding: 26px;
+      width: 90%;
+      max-width: 420px;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      animation: fade 0.6s ease;
+    }
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    h2 { margin-bottom: 14px; }
+    p { color: #555; }
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 12px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .yes { background: #ff6b81; color: white; }
+    .no { background: #ddd; }
+  </style>
+</head>
+<body>
+
+<div class="box" id="app">
+  <h2>Valentine ini aku cuma mau jujur.</h2>
+  <p>Aku nggak minta apa-apa,<br>cuma satu jawaban.</p>
+  <p><strong>Kamu kangen aku nggak?</strong></p>
+
+  <button class="yes" onclick="play(); iya()">Iya</button>
+  <button class="no" onclick="play(); engga()">Engga</button>
+</div>
+
+<!-- MUSIK -->
+<audio id="music" src="gluesong.mp3" loop></audio>
+
+<script>
+  const app = document.getElementById("app");
+  const music = document.getElementById("music");
+
+  function play() {
+    if (music.paused) {
+      music.volume = 0.6;
+      music.play();
+    }
+  }
+
+  function iya() {
+    app.innerHTML = `
+      <h2>Serius?</h2>
+      <p>Aku cuma mau pastiin.</p>
+      <button class="yes" onclick="play(); serius()">Iya, serius</button>
+      <button class="no" onclick="play(); ragu()">Engga / ragu</button>
+    `;
+  }
+
+  function serius() {
+    app.innerHTML = `
+      <h2>Yaudah.</h2>
+      <p>Kalau kamu kangen,<br>aku juga masih di sini.</p>
+      <p><strong>Happy Valentine.</strong></p>
+      🤍
+    `;
+  }
+
+  function engga() { tutup(); }
+  function ragu() { tutup(); }
+
+  function tutup() {
+    app.innerHTML = `
+      <h2>Gapapa.</h2>
+      <p>Makasih ya udah jujur.<br>Semoga harimu hangat hari ini.</p>
+    `;
+  }
+</script>
+
+</body>
+</html>
